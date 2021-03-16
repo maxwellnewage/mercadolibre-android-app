@@ -9,8 +9,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchViewModel(val onSearchResponse: OnSearchResponse): ViewModel() {
+class SearchViewModel: ViewModel() {
     val products = MutableLiveData<List<Product>>()
+    var onSearchResponse: OnSearchResponse? = null
 
     fun search(term: String) {
         MeLiBuilder.api.search(term).enqueue(object : Callback<SearchResponse> {
@@ -20,16 +21,21 @@ class SearchViewModel(val onSearchResponse: OnSearchResponse): ViewModel() {
             ) {
                 if(response.isSuccessful && response.body() != null) {
                     products.postValue(response.body()!!.results)
-                    onSearchResponse.onSearchSuccess()
+                    onSearchResponse?.onSearchSuccess()
                 } else {
-                    onSearchResponse.onSearchError(response.errorBody().toString())
+                    onSearchResponse?.onSearchError(response.errorBody().toString())
                 }
             }
 
             override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-                onSearchResponse.onSearchError(t.message)
+                onSearchResponse?.onSearchError(t.message)
             }
         })
+    }
+
+    @JvmName("setOnSearchResponse1")
+    fun setOnSearchResponse(onSearch: OnSearchResponse) {
+        this.onSearchResponse = onSearch
     }
 
     interface OnSearchResponse {

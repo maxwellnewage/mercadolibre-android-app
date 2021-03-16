@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.maxwell.mercadolibredemo.ui.SearchAdapter
@@ -24,7 +25,8 @@ class MainActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        viewModel = SearchViewModel(this)
+        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+        viewModel.setOnSearchResponse(this)
 
         val iEmptyList: View = findViewById(R.id.iEmptyList)
         val rvProducts: RecyclerView = findViewById(R.id.rvProducts)
