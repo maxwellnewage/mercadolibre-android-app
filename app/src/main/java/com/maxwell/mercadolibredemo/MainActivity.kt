@@ -2,11 +2,13 @@ package com.maxwell.mercadolibredemo
 
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +34,21 @@ class MainActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
 
         val pbSearching: ProgressBar = findViewById(R.id.pbSearching)
 
+        val etSearchProduct: EditText = findViewById(R.id.etSearchProduct)
+
+        etSearchProduct.setOnKeyListener { _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                if(etSearchProduct.text.length > 3){
+                    iEmptyList.visibility = View.GONE
+                    pbSearching.visibility = View.VISIBLE
+                    viewModel.search(etSearchProduct.text.toString())
+                } else {
+                    Toast.makeText(this, "Debes ingresar más de 3 letras", Toast.LENGTH_SHORT).show()
+                }
+            }
+            false
+        }
+
         viewModel.products.observe(this, {
             adapter.setData(it)
 
@@ -45,25 +62,6 @@ class MainActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
 
             pbSearching.visibility = View.GONE
         })
-
-        viewModel.search("android")
-        pbSearching.visibility = View.VISIBLE
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     override fun onSearchSuccess() {
