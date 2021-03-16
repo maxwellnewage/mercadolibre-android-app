@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.maxwell.mercadolibredemo.ui.SearchAdapter
 import com.maxwell.mercadolibredemo.ui.SearchViewModel
 
-class MainActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
+class HomeActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
     private lateinit var viewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
