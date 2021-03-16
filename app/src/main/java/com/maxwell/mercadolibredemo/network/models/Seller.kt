@@ -2,7 +2,7 @@ package com.maxwell.mercadolibredemo.network.models
 
 import java.util.*
 
-class Seller(
+data class Seller(
     val id: String,
     val permalink: String,
     val registration_date: Date,

@@ -1,5 +1,5 @@
 package com.maxwell.mercadolibredemo.network.models
 
-class SellerReputation(
+data class SellerReputation(
     val transactions: Transactions,
 )

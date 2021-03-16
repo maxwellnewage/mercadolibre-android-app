@@ -1,6 +1,6 @@
 package com.maxwell.mercadolibredemo.network.models
 
-class Product(
+data class Product(
     val id: String,
     val site_id: String,
     val title: String,
