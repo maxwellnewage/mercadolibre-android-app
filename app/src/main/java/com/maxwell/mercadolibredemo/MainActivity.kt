@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
         rvProducts.adapter = adapter
         rvProducts.layoutManager = LinearLayoutManager(this)
 
+        val pbSearching: ProgressBar = findViewById(R.id.pbSearching)
+
         viewModel.products.observe(this, {
             adapter.setData(it)
 
@@ -39,9 +42,12 @@ class MainActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
                 iEmptyList.visibility = View.GONE
                 rvProducts.visibility = View.VISIBLE
             }
+
+            pbSearching.visibility = View.GONE
         })
 
         viewModel.search("android")
+        pbSearching.visibility = View.VISIBLE
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

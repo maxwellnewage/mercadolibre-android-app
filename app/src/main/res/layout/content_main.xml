@@ -21,5 +21,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include android:id="@+id/iEmptyList" layout="@layout/item_product_empty" />
+    <include
+        android:id="@+id/iEmptyList"
+        layout="@layout/item_product_empty" />
+
+    <ProgressBar
+        android:id="@+id/pbSearching"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
