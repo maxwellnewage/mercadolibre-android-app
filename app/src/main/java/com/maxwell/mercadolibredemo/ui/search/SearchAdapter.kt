@@ -1,4 +1,4 @@
-package com.maxwell.mercadolibredemo.ui
+package com.maxwell.mercadolibredemo.ui.search
 
 import android.content.Context
 import android.view.LayoutInflater

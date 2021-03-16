@@ -1,5 +1,9 @@
 package com.maxwell.mercadolibredemo.network.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Product(
     val id: String,
     val site_id: String,
@@ -13,5 +17,6 @@ data class Product(
     val thumbnail: String,
     val accepts_mercadopago: Boolean,
     val address: Address,
+    val attributes: List<Attributes>,
     val tags: List<String>
-)
+): Parcelable

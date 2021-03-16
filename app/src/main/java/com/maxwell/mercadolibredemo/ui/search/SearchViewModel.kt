@@ -1,4 +1,4 @@
-package com.maxwell.mercadolibredemo.ui
+package com.maxwell.mercadolibredemo.ui.search
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
