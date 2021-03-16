@@ -5,18 +5,13 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
-import com.maxwell.mercadolibredemo.network.MeLiBuilder
-import com.maxwell.mercadolibredemo.network.search.SearchResponse
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.maxwell.mercadolibredemo.ui.SearchAdapter
+import com.maxwell.mercadolibredemo.ui.SearchViewModel
 
 class MainActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
     private lateinit var viewModel: SearchViewModel
@@ -28,14 +23,25 @@ class MainActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
 
         viewModel = SearchViewModel(this)
 
-        val btTest: Button = findViewById(R.id.btTest)
-        btTest.setOnClickListener { viewModel.search("android") }
+        val iEmptyList: View = findViewById(R.id.iEmptyList)
+        val rvProducts: RecyclerView = findViewById(R.id.rvProducts)
+        val adapter = SearchAdapter(this, emptyList())
+        rvProducts.adapter = adapter
+        rvProducts.layoutManager = LinearLayoutManager(this)
 
         viewModel.products.observe(this, {
-            if(it.isNotEmpty()) {
-                Log.d(localClassName, "First Product: ${it[0]}")
+            adapter.setData(it)
+
+            if(it.isEmpty()) {
+                iEmptyList.visibility = View.VISIBLE
+                rvProducts.visibility = View.GONE
+            } else {
+                iEmptyList.visibility = View.GONE
+                rvProducts.visibility = View.VISIBLE
             }
         })
+
+        viewModel.search("android")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

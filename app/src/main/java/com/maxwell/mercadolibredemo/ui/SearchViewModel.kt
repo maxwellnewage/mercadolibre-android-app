@@ -1,7 +1,5 @@
-package com.maxwell.mercadolibredemo
+package com.maxwell.mercadolibredemo.ui
 
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.maxwell.mercadolibredemo.network.MeLiBuilder
@@ -10,16 +8,9 @@ import com.maxwell.mercadolibredemo.network.search.SearchResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
-
-//val EMPTY_PRODUCTS_LIST: List<Product> = Collections.emptyList()
 
 class SearchViewModel(val onSearchResponse: OnSearchResponse): ViewModel() {
     val products = MutableLiveData<List<Product>>()
-
-//    init {
-//        products.postValue(EMPTY_PRODUCTS_LIST)
-//    }
 
     fun search(term: String) {
         MeLiBuilder.api.search(term).enqueue(object : Callback<SearchResponse> {
