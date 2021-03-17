@@ -36,11 +36,13 @@ class SearchAdapter(private val context: Context, private var products: List<Pro
 
         holder.tvProdTitle.text = product.title
 
+        // sometimes the API not bring a nickname for the seller
         if(product.seller?.eshop != null) {
             holder.tvSellerName.text = product.seller.eshop.nick_name
         }
 
         val ratings = product.seller?.seller_reputation!!.transactions.ratings
+        // multiplied by 100 and converted to integer for obtain a percentage
         holder.tvSellerReputationPositive.text = "Positivo: ${(ratings.positive * 100).toInt()}%"
         holder.tvSellerReputationNeutral.text = "Neutral: ${(ratings.neutral * 100).toInt()}%"
         holder.tvSellerReputationNegative.text = "Negativo: ${(ratings.negative * 100).toInt()}%"

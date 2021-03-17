@@ -30,6 +30,7 @@ class HomeActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
         val adapter = SearchAdapter(this, emptyList())
         rvProducts.adapter = adapter
         rvProducts.layoutManager = LinearLayoutManager(this)
+        rvProducts.setHasFixedSize(true)
 
         val pbSearching: ProgressBar = findViewById(R.id.pbSearching)
 

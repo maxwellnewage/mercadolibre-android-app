@@ -15,7 +15,7 @@ class AttrProdVH(v: View) : RecyclerView.ViewHolder(v) {
     val tvValue: TextView = v.findViewById(R.id.tvValue)
 }
 
-class AttrProdAdapter(val attrs: List<Attributes>): RecyclerView.Adapter<AttrProdVH>() {
+class AttrProdAdapter(private val attrs: List<Attributes>): RecyclerView.Adapter<AttrProdVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttrProdVH {
         return AttrProdVH(LayoutInflater.from(parent.context).inflate(R.layout.item_product_detail_attr, parent, false))
