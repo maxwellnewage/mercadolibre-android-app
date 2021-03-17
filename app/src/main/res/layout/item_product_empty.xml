@@ -16,13 +16,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¡Empezá a buscar productos!"
+        android:text="@string/tv_start_search_products"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Usá el buscador de la barra superior"
+        android:text="@string/tv_search_instructions"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 </LinearLayout>

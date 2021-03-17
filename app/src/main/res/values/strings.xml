@@ -9,4 +9,11 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="tv_start_search_products">¡Empezá a buscar productos!</string>
+    <string name="tv_search_instructions">Usá el buscador de la barra superior</string>
+    <string name="tv_seller_reputation">REPUTACIÓN DEL VENDEDOR</string>
+    <string name="tv_product_attrs">ATRIBUTOS DEL PRODUCTO</string>
+    <string name="banner_product_image">Banner Product Image</string>
+    <string name="iv_product_image">Product Image</string>
+    <string name="tv_reputation">Reputación</string>
 </resources>
