@@ -4,18 +4,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.maxwell.mercadolibredemo.ui.SearchAdapter
-import com.maxwell.mercadolibredemo.ui.SearchViewModel
+import com.maxwell.mercadolibredemo.ui.search.SearchAdapter
+import com.maxwell.mercadolibredemo.ui.search.SearchViewModel
 
 class HomeActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
     private lateinit var viewModel: SearchViewModel

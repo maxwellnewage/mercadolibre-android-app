@@ -1,6 +1,7 @@
 package com.maxwell.mercadolibredemo.ui.search
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.maxwell.mercadolibredemo.DetailsProductActivity
 import com.maxwell.mercadolibredemo.R
 import com.maxwell.mercadolibredemo.network.models.Product
 
@@ -34,17 +36,19 @@ class SearchAdapter(private val context: Context, private var products: List<Pro
 
         holder.tvProdTitle.text = product.title
 
-        if(product.seller.eshop != null) {
+        if(product.seller?.eshop != null) {
             holder.tvSellerName.text = product.seller.eshop.nick_name
         }
 
-        val ratings = product.seller.seller_reputation.transactions.ratings
+        val ratings = product.seller?.seller_reputation!!.transactions.ratings
         holder.tvSellerReputationPositive.text = "Positivo: ${(ratings.positive * 100).toInt()}%"
         holder.tvSellerReputationNeutral.text = "Neutral: ${(ratings.neutral * 100).toInt()}%"
         holder.tvSellerReputationNegative.text = "Negativo: ${(ratings.negative * 100).toInt()}%"
 
         holder.itemView.setOnClickListener {
-
+            val intent = Intent(context, DetailsProductActivity::class.java)
+            intent.putExtra("product", product)
+            context.startActivity(intent)
         }
     }
 
