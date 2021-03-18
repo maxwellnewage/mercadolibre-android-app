@@ -47,10 +47,8 @@ class HomeActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
                     iEmptyList.visibility = View.GONE
                     pbSearching.visibility = View.VISIBLE
 
-                    // I have to convert the term in url string like
-                    // "some car" to "some+car" and finally to "some%20car"
-                    var term = URLEncoder.encode(etSearchProduct.text.toString(), "UTF-8")
-                    term = term.replace("+", "%20")
+                    // I have to convert the term in url string like "some car" to "some+car"
+                    val term = URLEncoder.encode(etSearchProduct.text.toString(), "UTF-8")
                     viewModel.search(term)
                 } else {
                     Toast.makeText(this, "Debes ingresar más de 3 letras", Toast.LENGTH_SHORT).show()
