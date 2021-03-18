@@ -1,18 +1,23 @@
 package com.maxwell.mercadolibredemo
 
 import android.os.Bundle
+import android.text.Html
+import android.text.TextUtils
 import android.util.Log
 import android.view.KeyEvent
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.HtmlCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.maxwell.mercadolibredemo.ui.search.SearchAdapter
 import com.maxwell.mercadolibredemo.ui.search.SearchViewModel
+import java.net.URLEncoder
+
 
 class HomeActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
     private lateinit var viewModel: SearchViewModel
@@ -41,7 +46,12 @@ class HomeActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
                 if(etSearchProduct.text.length > 3){
                     iEmptyList.visibility = View.GONE
                     pbSearching.visibility = View.VISIBLE
-                    viewModel.search(etSearchProduct.text.toString())
+
+                    // I have to convert the term in url string like
+                    // "some car" to "some+car" and finally to "some%20car"
+                    var term = URLEncoder.encode(etSearchProduct.text.toString(), "UTF-8")
+                    term = term.replace("+", "%20")
+                    viewModel.search(term)
                 } else {
                     Toast.makeText(this, "Debes ingresar más de 3 letras", Toast.LENGTH_SHORT).show()
                 }
@@ -52,7 +62,7 @@ class HomeActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
         viewModel.products.observe(this, {
             adapter.setData(it)
 
-            if(it.isEmpty()) {
+            if (it.isEmpty()) {
                 iEmptyList.visibility = View.VISIBLE
                 rvProducts.visibility = View.GONE
             } else {
@@ -73,6 +83,7 @@ class HomeActivity : AppCompatActivity(), SearchViewModel.OnSearchResponse {
         Toast.makeText(
             this,
             "Hubo un error, por favor reintenta nuevamente",
-            Toast.LENGTH_SHORT).show()
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }
