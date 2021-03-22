@@ -1,5 +1,5 @@
 # MercadoLibre Demo App
-This is an app for search a product using the MeLi API.
+This is an app for search a product using the [MeLi API](https://developers.mercadolibre.com.ar/es_ar/items-y-busquedas). At least this endpoint not need a Token.
 
 ## Installation
  This is an Android Studio Project. You just clone the repo; next open in your IDE and run!
