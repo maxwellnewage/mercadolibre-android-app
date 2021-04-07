@@ -11,7 +11,7 @@ import retrofit2.Response
 
 class SearchViewModel: ViewModel() {
     val products = MutableLiveData<List<Product>>()
-    var onSearchResponse: OnSearchResponse? = null
+    private var onSearchResponse: OnSearchResponse? = null
 
     fun search(term: String) {
         MeLiBuilder.api.search(term).enqueue(object : Callback<SearchResponse> {
@@ -33,7 +33,6 @@ class SearchViewModel: ViewModel() {
         })
     }
 
-    @JvmName("setOnSearchResponse1")
     fun setOnSearchResponse(onSearch: OnSearchResponse) {
         this.onSearchResponse = onSearch
     }
