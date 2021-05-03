@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.maxwell.mercadolibredemo.DetailsProductActivity
 import com.maxwell.mercadolibredemo.R
+import com.maxwell.mercadolibredemo.commons.Constants
 import com.maxwell.mercadolibredemo.network.models.Product
 
 class SearchVH(v: View): RecyclerView.ViewHolder(v) {
@@ -49,7 +50,7 @@ class SearchAdapter(private val context: Context, private var products: List<Pro
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, DetailsProductActivity::class.java)
-            intent.putExtra("product", product)
+            intent.putExtra(Constants.EXTRA_PRODUCT, product)
             context.startActivity(intent)
         }
     }

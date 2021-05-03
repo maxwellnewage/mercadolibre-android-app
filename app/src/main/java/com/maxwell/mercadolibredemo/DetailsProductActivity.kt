@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.maxwell.mercadolibredemo.commons.Constants
 import com.maxwell.mercadolibredemo.network.models.Product
 import com.maxwell.mercadolibredemo.ui.product_details.AttrProdAdapter
 
@@ -15,7 +16,7 @@ class DetailsProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_product)
 
-        val product: Product = intent.getParcelableExtra("product")!!
+        val product: Product = intent.getParcelableExtra(Constants.EXTRA_PRODUCT)!!
 
         val ivProductImage: ImageView = findViewById(R.id.ivProductImage)
         Glide.with(this).load(product.thumbnail).into(ivProductImage)
