@@ -6,5 +6,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 class Attributes(
     val name: String,
-    val value_name: String,
+    val value_name: String?,
 ): Parcelable

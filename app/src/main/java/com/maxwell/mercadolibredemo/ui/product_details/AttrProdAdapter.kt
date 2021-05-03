@@ -25,7 +25,7 @@ class AttrProdAdapter(private val attrs: List<Attributes>): RecyclerView.Adapter
         val attr = attrs[position]
 
         holder.tvName.text = attr.name
-        holder.tvValue.text = attr.value_name
+        holder.tvValue.text = attr.value_name?: ""
     }
 
     override fun getItemCount(): Int {
